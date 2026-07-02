@@ -40,7 +40,7 @@ El venv incluido en el repositorio **no funcionará** en otra máquina porque ti
 
 **Paso 1 — Crear venv nuevo:**
 ```powershell
-cd "C:\ruta\donde\clonaste\InicializadordeChroma"
+cd "C:\ruta\InicializadordeChroma"
 python -m venv .venv
 .venv\Scripts\activate
 ```

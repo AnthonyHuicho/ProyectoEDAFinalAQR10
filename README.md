@@ -20,7 +20,6 @@ InicializadordeChroma/
 │   └── hnswlib-master/
 ├── test.py                      ← benchmark del AQR-HNSW
 ├── testoriginal.py              ← benchmark del baseline HNSW
-└── .venv/                       ← venv (NO usar este, ver instrucciones)
 ```
 
 ---
@@ -31,7 +30,7 @@ InicializadordeChroma/
 - Visual Studio Build Tools con C++ (para compilar el C++)
 - numpy
 - pandas
-
+- descargar el fashion mnist de https://www.kaggle.com/datasets/zalando-research/fashionmnist?resource=download
 ---
 
 ## Instalación desde cero
@@ -94,9 +93,9 @@ Los scripts esperan el archivo `fashion-mnist_train.csv` en:
 C:\Users\Usuario\Desktop\dataset\fashion-mnist_train.csv
 ```
 
-Si tu dataset está en otra ruta, cambia esta línea en `test.py` y `testoriginal.py`:
+Si el dataset está en otra ruta, cambia esta línea en `test.py` y `testoriginal.py`:
 ```python
-df = pd.read_csv(r"C:\Users\Usuario\Desktop\dataset\fashion-mnist_train.csv")
+df = pd.read_csv(r"fashion-mnist_train.csv")
 ```
 
 ---

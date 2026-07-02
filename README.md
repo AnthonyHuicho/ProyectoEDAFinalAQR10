@@ -82,13 +82,6 @@ python testoriginal.py
 
 ## Qué hace el AQR modificado
 
-El hnswlib en `ProyectoEDAModificado` agrega estas funciones al índice:
-
-- `index.initAQR(data)` — ejecuta el Build Phase: calcula densidades, cuantiza el dataset a uint8, y construye el grafo
-- `index.resetTiempos()` — resetea los contadores de tiempo internos
-- `index.getTiempoBase()` — retorna el tiempo acumulado del Stage 1 (búsqueda cuantizada) en microsegundos
-- `index.getTiempoAQR()` — retorna el tiempo total del searchKnn con AQR en microsegundos
-- `index.getTiempoSoloAQR()` — retorna el tiempo solo del refinamiento (Stages 2 y 3) en microsegundos
 
 Cuando se llama `initAQR`, cada `knn_query` ejecuta automáticamente el Search Phase completo del Algorithm 2: búsqueda coarse con uint8, refinamiento asimétrico, early termination, y exact reranking.
 

@@ -7,18 +7,19 @@ Implementación del algoritmo AQR-HNSW basada en el paper:
 ## Estructura del proyecto
 
 ```
-InicializadordeChroma/
-├── ProyectoEDAModificado/       ← hnswlib modificado con AQR
-│   └── hnswlib-master/
-│       ├── hnswlib/
-│       │   └── hnswalg.h        ← implementacion del AQR
-│       ├── python_bindings/
-│       │   └── bindings.cpp     ← exposicion a Python
-│       └── setup.py
-├── hnsworiganltest/             ← hnswlib original sin modificar
-│   └── hnswlib-master/
-├── test.py                      ← benchmark del AQR-HNSW
-├── testoriginal.py              ← benchmark del baseline HNSW
+ProyectoEDAFinalAQR10/
+|-- ProyectoEDAModificado/       -- hnswlib modificado con AQR
+|   └── hnswlib-master/
+|       |-- hnswlib/
+|       │   |-- hnswalg.h        |-- implementacion del AQR
+│       |-- python_bindings/
+│       │   |-- bindings.cpp     |-- exposicion a Python
+│       |-- setup.py
+|-- hnsworiganltest/             |-- hnswlib original sin modificar
+│   |-- hnswlib-master/
+|-- test.py                      |-- benchmark del AQR-HNSW
+|-- testoriginal.py              |-- benchmark del baseline HNSW
+|--fashionmnist train.csv        |-- archivo descargado desde la web 
 ```
 
 ---
@@ -34,7 +35,8 @@ InicializadordeChroma/
 
 ## Instalación desde cero
 
-El venv incluido en el repositorio **no funcionará** en otra máquina porque tiene rutas absolutas. Debes crear uno nuevo.
+El data set es el de fashion mnist y el el archivo train, poner el archivo dentro del .
+
 
 **Paso 1 — Crear venv nuevo:**
 ```powershell
@@ -43,40 +45,21 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-**Paso 2 — Instalar el hnswlib modificado (AQR):**
+**Paso 2 — Instalar dependencias, instalar el hnswlib modificado (AQR):**
 ```powershell
-pip install -e ProyectoEDAModificado\hnswlib-master
+pip install chromadb numpy pandas
+pip install -e .\ProyectoEDAModificado\hnswlib-master\ 
 ```
 
-**Paso 3 — Instalar dependencias:**
+**Paso 3 — Ejecutar el archivo del AQR**
 ```powershell
-pip install numpy pandas
+python .\test.py
 ```
-
-**Paso 4 — Verificar que cargó el modificado:**
+**Paso 3 — Ejecutar el archivo del normal-Baseline**
 ```powershell
-python -c "import hnswlib; print(hnswlib.__file__)"
+pip install -e .\hnsworiganltest\hnswlib-master\
+python .\testoriginal.py
 ```
-Debe mostrar una ruta dentro de tu carpeta del proyecto.
-
----
-
-## Uso
-
-**Correr el AQR-HNSW** (usa el hnswlib modificado):
-```powershell
-.venv\Scripts\activate
-python test.py
-```
-
-**Correr el baseline HNSW original:**
-
-El baseline corre con el mismo hnswlib modificado — cuando no se llama `initAQR` el índice usa el camino original sin AQR. Solo corre:
-```powershell
-python testoriginal.py
-```
-
----
 
 ## Qué hace el AQR modificado
 
@@ -85,14 +68,8 @@ Cuando se llama `initAQR`, cada `knn_query` ejecuta automáticamente el Search P
 
 ---
 
-## Dataset
 
-Los scripts esperan el archivo `fashion-mnist_train.csv` en:
-```
-C:\Users\Usuario\Desktop\dataset\fashion-mnist_train.csv
-```
-
-Si el dataset está en otra ruta, cambia esta línea en `test.py` y `testoriginal.py`:
+Si el dataset está en otra ruta, cambia el archivo a del proyectofinalEDAAQR10:
 ```python
 df = pd.read_csv(r"fashion-mnist_train.csv")
 ```

@@ -1,7 +1,6 @@
 # AQR-HNSW — Implementación del Search Phase
 
 Implementación del algoritmo AQR-HNSW basada en el paper:
-> *AQR-HNSW: Accelerating Approximate Nearest Neighbor Search via Density-aware Quantization and Multi-stage Re-ranking* — Tewary, Gantayat, Zhang (2026)
 
 ---
 
